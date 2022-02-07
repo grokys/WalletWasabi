@@ -64,7 +64,6 @@ public partial class HistoryViewModel : ActivatableViewModel
 			// Balance			BalanceColumnView			Balance (₿)		Auto		120				150			true
 
 			IControl IndicatorsColumnTemplate(HistoryItemViewModelBase node, INameScope ns) => new IndicatorsColumnView();
-			IControl DateColumnTemplate(HistoryItemViewModelBase node, INameScope ns) => new DateColumnView();
 			IControl LabelsColumnTemplate(HistoryItemViewModelBase node, INameScope ns) => new LabelsColumnView();
 			IControl IncomingColumnTemplate(HistoryItemViewModelBase node, INameScope ns) => new IncomingColumnView();
 			IControl OutgoingColumnTemplate(HistoryItemViewModelBase node, INameScope ns) => new OutgoingColumnView();
@@ -86,9 +85,9 @@ public partial class HistoryViewModel : ActivatableViewModel
                         },
                         width: new GridLength(0, GridUnitType.Auto)),
                     // Date
-                    new TemplateColumn<HistoryItemViewModelBase>(
+                    new PrivacyTextColumn(
 	                    "Date / Time",
-	                    new FuncDataTemplate<HistoryItemViewModelBase>(DateColumnTemplate, true),
+						x => x.DateString,
 	                    options: new ColumnOptions<HistoryItemViewModelBase>
 	                    {
 		                    CanUserResizeColumn = false,
@@ -110,9 +109,9 @@ public partial class HistoryViewModel : ActivatableViewModel
 	                    },
 	                    width: new GridLength(1, GridUnitType.Star)),
                     // Incoming
-                    new TemplateColumn<HistoryItemViewModelBase>(
+                    new PrivacyTextColumn(
 	                    "Incoming (₿)",
-	                    new FuncDataTemplate<HistoryItemViewModelBase>(IncomingColumnTemplate, true),
+	                    x => x.IncomingAmount?.ToString(),
 	                    options: new ColumnOptions<HistoryItemViewModelBase>
 	                    {
 		                    CanUserResizeColumn = false,
@@ -124,9 +123,9 @@ public partial class HistoryViewModel : ActivatableViewModel
 	                    },
 	                    width: new GridLength(0, GridUnitType.Auto)),
                     // Outgoing
-                    new TemplateColumn<HistoryItemViewModelBase>(
+                    new PrivacyTextColumn(
 	                    "Outgoing (₿)",
-	                    new FuncDataTemplate<HistoryItemViewModelBase>(OutgoingColumnTemplate, true),
+	                    x => x.OutgoingAmount?.ToString(),
 	                    options: new ColumnOptions<HistoryItemViewModelBase>
 	                    {
 		                    CanUserResizeColumn = false,
@@ -138,9 +137,9 @@ public partial class HistoryViewModel : ActivatableViewModel
 	                    },
 	                    width: new GridLength(0, GridUnitType.Auto)),
                     // Balance
-                    new TemplateColumn<HistoryItemViewModelBase>(
+                    new PrivacyTextColumn(
 	                    "Balance (₿)",
-	                    new FuncDataTemplate<HistoryItemViewModelBase>(BalanceColumnTemplate, true),
+	                    x => x.Balance?.ToString(),
 	                    options: new ColumnOptions<HistoryItemViewModelBase>
 	                    {
 		                    CanUserResizeColumn = false,

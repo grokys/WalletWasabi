@@ -7,6 +7,7 @@
              xmlns:history="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History"
              xmlns:historyItems="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History.HistoryItems"
              xmlns:behaviors="clr-namespace:WalletWasabi.Fluent.Behaviors"
+             xmlns:v="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Home.History"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="history:HistoryViewModel"
              x:CompileBindings="True"
@@ -14,7 +15,7 @@
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.HistoryTablePro">
   <Panel>
 
-    <TreeDataGrid Source="{Binding Source}"
+    <v:HistoryGrid Source="{Binding Source}"
                   CanUserResizeColumns="False"
                   Margin="0 0 0 0">
       <TreeDataGrid.Styles>
@@ -155,7 +156,7 @@
         </Style>
 
       </TreeDataGrid.Styles>
-    </TreeDataGrid>
+    </v:HistoryGrid>
     <Panel IsVisible="{Binding IsTransactionHistoryEmpty}">
       <c:HistoryPlaceholderPanel Margin="{StaticResource HistoryTablePlaceholderPanelMargin}"
                                  RowHeight="{StaticResource HistoryTableRowHeight}"/>
